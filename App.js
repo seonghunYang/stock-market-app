@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers/index';
 import logger from 'redux-logger';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import NewsScreen from "./Screen/NewsScreen";
 
@@ -30,6 +31,16 @@ function SettingsScreen() {
   );
 }
 
+function Home() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen}  />
+      <Tab.Screen name="News" component={NewsScreen}  />
+      <Tab.Screen name="Settings" component={SettingsScreen}  />
+    </Tab.Navigator>
+  );
+}
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -37,11 +48,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="News" component={NewsScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} options={{title: "liveStock"}} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
