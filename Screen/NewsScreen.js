@@ -75,6 +75,10 @@ export default function NewsScreen() {
           <FlatList
             data={news}
             renderItem={({ item }) => <Item item={item} />}
+            keyExtractor={item => item.id}
+            getItemLayout={(data, index) => (
+              {length: 3, offset: 3 * index, index}
+            )}
           />
         </View>
       }
