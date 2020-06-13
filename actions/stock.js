@@ -26,6 +26,7 @@ export function createCompanyList() {
 export function detailInfo(symbol) {
   return async (dispatch) => {
     try {
+      dispatch({type:"Start_Loading"})
       const {data} = await axios(BASE_URL+"/v1/stock/profile2", 
         {params: { symbol: symbol, token : API_KEY}});
       data["symbol"] = symbol;
@@ -47,12 +48,14 @@ export function detailInfo(symbol) {
           payload: {ticker: symbol, name: "no company information"},
           payload2: quote_data.data,
         })
+        dispatch({type:"End_Loading"})
       }else{
       dispatch({
         type: "CREATE_DETAIL",
         payload: data,
         payload2: quote_data.data,
       });
+      dispatch({type:"End_Loading"})
     }
     }catch(error) {
       console.error(error);
