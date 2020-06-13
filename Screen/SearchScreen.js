@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
-import { Text, View} from 'react-native';
+import { Text, View, Keyboard} from 'react-native';
 import styled from 'styled-components/native'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {createCompanyList} from '../actions/stock';
-import {SearchCompany} from '../actions/stock';
 const FlatList = styled.FlatList`
   width :100% ;
   backgroundColor: #fff
@@ -46,7 +45,9 @@ function Item({ item, navigation } ) {
   return (
     <TouchableHighlight
     activeOpacity={0.6}
+    underlayColor="rgb(242, 242, 242)"
     onPress={() => {
+      Keyboard.dismiss();
       navigation.navigate('Detail',{
         symbol:item.symbol
       })

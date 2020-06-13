@@ -117,6 +117,13 @@ export default function App() {
               )
             })}
           />
+          <Stack.Screen
+            name="Detail"
+            component={DetailScreen}
+            options={({navigation, route}) => ({
+              title: route.params.symbol
+            })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
