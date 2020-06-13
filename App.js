@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import NewsScreen from "./Screen/NewsScreen";
 import SearchScreen from "./Screen/SearchScreen";
+import DetailScreen from "./Screen/DetailScreen";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(logger, thunk)));
@@ -91,7 +92,7 @@ export default function App() {
            options={({navigation}) => ({
              headerTitle: "liveStock",
              headerRight: () => (
-              <FontAwesome.Button name="search" backgroundColor="white" color="gray" onPress={() => {navigation.navigate('Screen',{term: null})}}/>
+              <FontAwesome.Button name="search" backgroundColor="white" color="gray" onPress={() => {navigation.navigate('Screen',{term: ""})}}/>
              )
              })} />
           <Stack.Screen 

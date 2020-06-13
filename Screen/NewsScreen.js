@@ -1,12 +1,16 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native'
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 import {CreateGeneralNews} from '../actions/news';
-
+const FlatList = styled.FlatList`
+  width :100% ;
+`;
 const TouchableHighlight = styled.TouchableHighlight`
+`;
+const ActivityIndicator = styled.ActivityIndicator`
 `;
 const ItemRow = styled.View`
   flex-flow: row;
@@ -32,7 +36,8 @@ function Item({ item } ) {
   date = date.toString().slice(0,21);
   return (
     <TouchableHighlight
-    activeOpacity={0.6}>
+    activeOpacity={0.6}
+    underlayColor="#EFF7F6">
       <ItemRow>
         <Col size={90}> 
           <Row>
@@ -60,10 +65,10 @@ export default function NewsScreen() {
   const news = useSelector(state => state.news);
   
   useEffect(() => {
-    if(!news) {
+    if(news.length === 0) {
       dispatch(CreateGeneralNews())
     }
-    if(news && news.length === 0) {
+    if(news) {
       return;
     }
   });
@@ -76,9 +81,7 @@ export default function NewsScreen() {
             data={news}
             renderItem={({ item }) => <Item item={item} />}
             keyExtractor={item => item.id}
-            getItemLayout={(data, index) => (
-              {length: 3, offset: 3 * index, index}
-            )}
+            ListEmptyComponent={<ActivityIndicator size="large" color="#0000ff" />}
           />
         </View>
       }
