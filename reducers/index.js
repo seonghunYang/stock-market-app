@@ -6,6 +6,8 @@ const initialState = {
   loading: true,
   companyInfo: null,
   companyStockInfo: null,
+  chartData: null,
+  companyNews: null
 }
 
 const reducer = produce((state, action) => {
@@ -17,12 +19,17 @@ const reducer = produce((state, action) => {
       state.companyInfo = action.payload;
       state.companyStockInfo = action.payload2;
       break;
+    case "CREATE_CHARTDATA":
+      state.chartData = action.payload;
+      break;
     case "SEARCH_COMPANY":
       state.searchedCompanyList = action.payload;
       break;
     case "CREATE_JENERAL_NEWS":
       state.news = action.payload;
       break; 
+    case "CREATE_SYMBOL_NEWS":
+      state.companyNews = action.payload
     case "Start_Loading":
       state.loading = true;
       break;

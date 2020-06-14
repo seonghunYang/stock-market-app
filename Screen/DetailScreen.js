@@ -4,11 +4,24 @@ import styled from 'styled-components/native'
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 import {detailInfo} from '../actions/stock';
+import {createChartData} from '../actions/stock';
+import {SymbolSearchNews} from '../actions/news';
 import LiveStock from '../components/LiveStock';
 import StockStatus from '../components/StockStatus';
+import Chart from '../components/Chart';
+import NewsItem from '../components/NewsItem';
 
 const Text = styled.Text``
 const View = styled.View``
+const FlatList = styled.FlatList`
+  width :100% ;
+`;
+const ChartView = styled.View`
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+`
 const InfoView = styled.View`
   width: 100%;
   backgroundColor: #fff;
@@ -38,6 +51,8 @@ const NameText =styled.Text`
 export default function DetailScreen({route}) {
   const companyInfo = useSelector(state => state.companyInfo);
   const companyStockInfo = useSelector(state => state.companyStockInfo);
+  const chartData = useSelector(state => state.chartData);
+  const companyNews = useSelector(state => state.companyNews);
   const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
 
@@ -48,18 +63,22 @@ export default function DetailScreen({route}) {
       }
       else{
         dispatch(detailInfo(route.params.symbol));
+        dispatch(createChartData(route.params.symbol));
+        dispatch(SymbolSearchNews(route.params.symbol));
         return;
       }
     }
     else{
     dispatch(detailInfo(route.params.symbol));
+    dispatch(createChartData(route.params.symbol));
+    dispatch(SymbolSearchNews(route.params.symbol));
     return;
   }
   })
   return (
     <View>
     {loading && <ActivityIndicator size="large" color="#0000ff" />}
-    {companyInfo &&
+    {companyInfo && chartData && companyNews &&
     <View>
       <InfoView>
         <RowView>
@@ -69,9 +88,19 @@ export default function DetailScreen({route}) {
         <RowView>
           <LiveStock stockInfo={companyStockInfo} symbol={companyInfo.symbol} /> 
         </RowView>
+        <ChartView>
+          <Chart data={chartData}></Chart>
+        </ChartView>
       </InfoView>
       <InfoView>
-        <StockStatus></StockStatus>
+        <StockStatus stockInfo={companyStockInfo} ></StockStatus>
+      </InfoView>
+      <InfoView>
+        <FlatList
+          data={companyNews}
+          renderItem={({ item }) => <NewsItem item={item} />}
+          keyExtractor={item => item.id}
+        />
       </InfoView>
     </View>
     }

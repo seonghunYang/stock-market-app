@@ -62,3 +62,24 @@ export function detailInfo(symbol) {
     }
   }
 }
+
+export function createChartData(symbol, resolution = "D") {
+  return async (dispatch) => {
+    try {
+      let d = new Date();
+      let toDay = parseInt(d.getTime() / 1000); 
+      let fromDay = parseInt(d.getTime() / 1000) - 60 * 60 * 24 * 14; 
+      const {data} = await axios(BASE_URL+"/v1/stock/candle",
+      {params: {
+        symbol: symbol,
+        resolution: resolution,
+        token : API_KEY,
+        from: fromDay,
+        to: toDay
+      }});
+      dispatch({type: "CREATE_CHARTDATA", payload: data})
+  }catch(error) {
+    console.error(error);
+  }
+  }
+}
