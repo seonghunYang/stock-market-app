@@ -4,8 +4,7 @@ import styled from 'styled-components/native'
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 import {detailInfo} from '../actions/stock';
-import {createChartData} from '../actions/stock';
-import {SymbolSearchNews} from '../actions/news';
+
 import LiveStock from '../components/LiveStock';
 import StockStatus from '../components/StockStatus';
 import Chart from '../components/Chart';
@@ -16,6 +15,8 @@ const View = styled.View``
 const FlatList = styled.FlatList`
   width :100% ;
 `;
+const ScrollView = styled.ScrollView``
+
 const ChartView = styled.View`
   margin-top: 15px;
   margin-left: 15px;
@@ -63,20 +64,16 @@ export default function DetailScreen({route}) {
       }
       else{
         dispatch(detailInfo(route.params.symbol));
-        dispatch(createChartData(route.params.symbol));
-        dispatch(SymbolSearchNews(route.params.symbol));
         return;
       }
     }
     else{
     dispatch(detailInfo(route.params.symbol));
-    dispatch(createChartData(route.params.symbol));
-    dispatch(SymbolSearchNews(route.params.symbol));
     return;
   }
   })
   return (
-    <View>
+    <ScrollView>
     {loading && <ActivityIndicator size="large" color="#0000ff" />}
     {companyInfo && chartData && companyNews &&
     <View>
@@ -104,7 +101,7 @@ export default function DetailScreen({route}) {
       </InfoView>
     </View>
     }
-    </View>
+    </ScrollView>
 
   );
 }

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { View } from 'react-native';
 import styled from 'styled-components/native'
 import { Col, Row, Grid } from "react-native-easy-grid";
+import noneImg from "../none.jpg";
+import * as Linking from 'expo-linking';
 
 const TouchableHighlight = styled.TouchableHighlight`
 `;
@@ -11,8 +13,11 @@ const ItemRow = styled.View`
   align-items: center;
   margin-left: 15px;
   margin-right: 35px;
-`;
+  margin-top: 10px;
+  `;
 const TextHead = styled.Text`
+  font-size: 13px;
+  color: #636e72;
 `;
 const TextMain = styled.Text`
   font-size: 15px;
@@ -31,11 +36,15 @@ export default function NewsItem({ item } ) {
   return (
     <TouchableHighlight
     activeOpacity={0.6}
-    underlayColor="#EFF7F6">
+    underlayColor="#EFF7F6"
+    onPress={() => {Linking.openURL(item.url)}}
+    >
       <ItemRow>
         <Col size={90}> 
           <Row>
-            <TextHead>{item.related}</TextHead>
+          {item.related !== "" &&
+            <TextHead>{item.related === "" ? null : item.related}</TextHead>
+          }
           </Row>
           <Row>
             <TextMain>{item.headline}</TextMain>
@@ -46,7 +55,7 @@ export default function NewsItem({ item } ) {
           </Row>
         </Col>
         <Col size={10}>
-          <Image source={{uri: item.image}}
+          <Image source={{uri: item.image !== "" ? item.image : "https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg"}}
             style={{width: 60, height: 60}} />
         </Col>
       </ItemRow>

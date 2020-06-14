@@ -18,9 +18,8 @@ const reducer = produce((state, action) => {
     case "CREATE_DETAIL":
       state.companyInfo = action.payload;
       state.companyStockInfo = action.payload2;
-      break;
-    case "CREATE_CHARTDATA":
-      state.chartData = action.payload;
+      state.chartData = action.payload3;
+      state.companyNews = action.payload4
       break;
     case "SEARCH_COMPANY":
       state.searchedCompanyList = action.payload;
@@ -28,8 +27,6 @@ const reducer = produce((state, action) => {
     case "CREATE_JENERAL_NEWS":
       state.news = action.payload;
       break; 
-    case "CREATE_SYMBOL_NEWS":
-      state.companyNews = action.payload
     case "Start_Loading":
       state.loading = true;
       break;
