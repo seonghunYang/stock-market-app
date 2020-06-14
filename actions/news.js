@@ -10,6 +10,7 @@ export function CreateGeneralNews(category ="general") {
         {params: { category: category, token : API_KEY}});
       data[0]["symbol"] = category;
       dispatch({type: "CREATE_JENERAL_NEWS", payload: data});
+      return;
     }catch(error) {
       console.error(error);
     }

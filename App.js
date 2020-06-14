@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,10 +12,13 @@ import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native'
 import { useDispatch, useSelector } from 'react-redux'
+import * as SplashScreen from 'expo-splash-screen';
 
 import NewsScreen from "./Screen/NewsScreen";
 import SearchScreen from "./Screen/SearchScreen";
 import DetailScreen from "./Screen/DetailScreen";
+import HomeScreen from "./Screen/HomeScreen";
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(logger, thunk)));
@@ -30,13 +33,6 @@ const RowView = styled.View`
 const MarginFontAwesome = styled(FontAwesome)`
   margin-right: 10px;
 `
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
 
 function SettingsScreen() {
   return (
@@ -81,6 +77,8 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [value, onChangeText] = React.useState('');
+  // const [isReady, setIsReady] = React.useState(false);
+
 
   return (
     <Provider store={store}>
