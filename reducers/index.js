@@ -7,11 +7,15 @@ const initialState = {
   companyInfo: null,
   companyStockInfo: null,
   chartData: null,
-  companyNews: null
+  companyNews: null,
+  mainData: null
 }
 
 const reducer = produce((state, action) => {
   switch(action.type) {
+    case "CREATE_MAIN_DATA":
+      state.mainData = action.payload;
+      break;
     case "CREATE_COMPANYLIST":
       state.companyList = action.payload;
       break;

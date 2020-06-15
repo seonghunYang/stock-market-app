@@ -1,5 +1,5 @@
 import React from 'react'
-import { AreaChart,LineChart, YAxis, Grid, XAxis } from 'react-native-svg-charts'
+import { AreaChart, YAxis, Grid, XAxis } from 'react-native-svg-charts'
 import { View } from 'react-native'
 
 class Chart extends React.PureComponent {
