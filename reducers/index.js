@@ -8,7 +8,8 @@ const initialState = {
   companyStockInfo: null,
   chartData: null,
   companyNews: null,
-  mainData: null
+  mainData: null,
+  wishlist: []
 }
 
 const reducer = produce((state, action) => {
@@ -31,6 +32,15 @@ const reducer = produce((state, action) => {
     case "CREATE_JENERAL_NEWS":
       state.news = action.payload;
       break; 
+    case "ADD_WISHLIST": 
+      state.wishlist.push(action.symbol);
+      break;
+    case "DELETE_WISHLIST":
+      const cleanwishlist = state.wishlist.filter(function(item) {  //true만 남김
+        return item.symbol !== action.symbol.symbol;
+      }); 
+      state.wishlist = cleanwishlist;
+      break;
     case "Start_Loading":
       state.loading = true;
       break;

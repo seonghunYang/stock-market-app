@@ -94,3 +94,15 @@ export function mainDataLoader() {
     }
   }
 }
+
+export function addWishlist (symbol) {
+  return ({
+    type: "ADD_WISHLIST", symbol: symbol
+  });
+}
+
+export function deleteWishlist (symbol) {
+  return ({
+    type: "DELETE_WISHLIST", symbol: symbol
+  })
+}

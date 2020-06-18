@@ -12,13 +12,13 @@ import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native'
 import { useDispatch, useSelector } from 'react-redux'
-import * as SplashScreen from 'expo-splash-screen';
 
 import NewsScreen from "./Screen/NewsScreen";
 import SearchScreen from "./Screen/SearchScreen";
 import DetailScreen from "./Screen/DetailScreen";
 import HomeScreen from "./Screen/HomeScreen";
 
+import WishButton from "./components/WishButton";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(logger, thunk)));
@@ -119,7 +119,10 @@ export default function App() {
             name="Detail"
             component={DetailScreen}
             options={({navigation, route}) => ({
-              title: route.params.symbol
+              headerTitle: route.params.symbol,
+              headerRight: () => (
+                <WishButton symbol={route.params.symbol}></WishButton>
+                )
             })}
           />
         </Stack.Navigator>
