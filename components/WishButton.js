@@ -1,8 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { View } from 'react-native';
-import styled from 'styled-components/native'
-import { Col, Row, Grid } from "react-native-easy-grid";
+
 import { FontAwesome } from '@expo/vector-icons';
 
 import {addWishlist, deleteWishlist} from '../actions/index';
@@ -46,7 +45,6 @@ export default function WishStar({ symbol } ) {
             setIsWishlist(true);
             dispatch(addWishlist(symbol))  
           }}
-
           />}
     </View>
   )

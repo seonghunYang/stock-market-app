@@ -6,7 +6,6 @@ class Chart extends React.PureComponent {
     render() {
         const {data} = this.props;
         const contentInset = { top: 20, bottom: 20 }
-        console.log(data)
         return (
             <View style={{ height: 200, flexDirection: 'row' }}>
                 <YAxis

@@ -1,9 +1,6 @@
 import React, {useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { View } from 'react-native';
 import styled from 'styled-components/native'
 import { Col, Row, Grid } from "react-native-easy-grid";
-import noneImg from "../none.jpg";
 import * as Linking from 'expo-linking';
 
 const TouchableHighlight = styled.TouchableHighlight`
@@ -29,7 +26,7 @@ const TextSub = styled.Text`
 `;
 const Image = styled.Image`
   border-radius: 10px;
-`
+`;
 export default function NewsItem({ item } ) {
   let date = new Date(item.datetime * 1000);
   date = date.toString().slice(0,21);

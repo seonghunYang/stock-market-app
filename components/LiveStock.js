@@ -6,37 +6,37 @@ const StateView = styled.View`
   align-items: flex-end;
   margin-left: 23px;
   margin-top: 10px;
-`
+`;
 const UpStateText = styled.Text`
   color: #2979ff;
   font-size: 45px;
   font-weight: bold;
-`
+`;
 const UpStateSubText = styled.Text`
   color: #2979ff;
   font-size: 17px;
   padding-bottom: 10px;
-`
+`;
 const DownStateText = styled.Text`
   color: #d32f2f;
   font-size: 45px;
   font-weight: bold;
-`
+`;
 const DownStateSubText = styled.Text`
   color: #d32f2f;
   font-size: 17px;
   padding-bottom: 10px;
-`
+`;
 const SameStateText = styled.Text`
   color: #757575;
   font-size: 45px;
   font-weight: bold;
-`
+`;
 const SameStateSubText = styled.Text`
   color: #757575;
   font-size: 17px;
   padding-bottom: 10px;
-`
+`;
 
 
 class LiveStock extends Component {
@@ -60,7 +60,6 @@ class LiveStock extends Component {
       socket: null
     }
   }
-  // instance of websocket connection as a class property
 
   shouldComponentUpdate(nextProps, nextState) {
     if(nextProps.symbol !== this.props.symbol){
@@ -92,7 +91,6 @@ class LiveStock extends Component {
     const socket = new WebSocket('wss://ws.finnhub.io?token=bqgqrufrh5r8lcmqasig');
     let setTimer = true;
     socket.onopen = () => {
-        // on connecting, do nothing but log it to the console
         socket.send(JSON.stringify({'type':'subscribe', 'symbol': this.props.symbol}))
         console.log('connected')
         this.setState({
@@ -100,7 +98,6 @@ class LiveStock extends Component {
       })
     }
     socket.onmessage = event => {
-      // listen to data sent from the websocket server
       const socketData = JSON.parse(event.data)
         if(socketData.type === "ping" || socketData.data[0].s !== this.props.symbol) {
           return;

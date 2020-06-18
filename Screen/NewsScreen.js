@@ -2,14 +2,13 @@ import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { View } from 'react-native';
 import styled from 'styled-components/native'
-import { Col, Row, Grid } from "react-native-easy-grid";
 
 import NewsItem from "../components/NewsItem";
 import {CreateGeneralNews} from '../actions/news';
+
 const FlatList = styled.FlatList`
   width :100% ;
 `;
-
 const ActivityIndicator = styled.ActivityIndicator`
 `;
 

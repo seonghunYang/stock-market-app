@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
@@ -34,18 +34,17 @@ const ItemView = styled.View`
 const RowView = styled.View`
   flex-flow: row;
   align-items: center;
-`
+`;
 const EmptyView = styled.View`
   height: 200;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-`
+`;
 const Button = styled.Button`
-`
+`;
 
 function Item({ item, navigation } ) {
-  const contentInset = { top: 0, bottom: 0 }
 
   return (
     <TouchableHighlight

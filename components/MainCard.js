@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
-import { View } from 'react-native';
 import styled from 'styled-components/native'
-import { Col, Row, Grid } from "react-native-easy-grid";
 import { AreaChart} from 'react-native-svg-charts'
 
 const TouchableHighlight = styled.TouchableHighlight`
@@ -26,7 +24,7 @@ const TextSub = styled.Text`
 const ChartView = styled.View`
   height: 30;
   flex-direction: row;
-`
+`;
 
 export default function MainCard({ data } ) {
   const contentInset = { top: 10, bottom: 10 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons';
 
 import {createCompanyList} from '../actions/stock';
+
 const FlatList = styled.FlatList`
   width :100% ;
   backgroundColor: #fff
@@ -42,7 +43,6 @@ const ItemTitle = styled.View`
   border-bottom-width: 1px;
   backgroundColor: rgb(242, 242, 242)
 `;
-
 const EmptyView = styled.View`
   width: 100%;
   height: 500
@@ -68,7 +68,6 @@ function Item({ item, navigation } ) {
       </ItemRow>
     </TouchableHighlight>
   )
-
 }
 
 //redux구조로 시도 term을 기억 / router term 연결 완료
