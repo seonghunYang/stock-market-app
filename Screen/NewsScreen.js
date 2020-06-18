@@ -12,11 +12,10 @@ const FlatList = styled.FlatList`
 const ActivityIndicator = styled.ActivityIndicator`
 `;
 
-
 export default function NewsScreen() {
   const dispatch = useDispatch();
   const news = useSelector(state => state.news);
-  
+
   useEffect(() => {
     if(news.length === 0) {
       dispatch(CreateGeneralNews())

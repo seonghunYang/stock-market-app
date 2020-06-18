@@ -31,7 +31,8 @@ const InfoView = styled.View`
   border-radius: 10px;
   margin-top: 20px;
 `;
-
+const RefreshControl = styled.RefreshControl`
+`
 class HomeScreen extends React.Component {
   constructor(props){
     super(props);

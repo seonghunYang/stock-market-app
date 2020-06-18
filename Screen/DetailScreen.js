@@ -49,6 +49,13 @@ const NameText =styled.Text`
   margin-left: 15px;
   margin-top: 15px;
 `;
+const RefreshControl = styled.RefreshControl`
+`;
+function wait(timeout) {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}
 
 export default function DetailScreen({route}) {
   const companyInfo = useSelector(state => state.companyInfo);
@@ -57,6 +64,7 @@ export default function DetailScreen({route}) {
   const companyNews = useSelector(state => state.companyNews);
   const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = React.useState(false);
 
   useEffect(() => {
     if(companyInfo){
@@ -73,8 +81,17 @@ export default function DetailScreen({route}) {
     return;
   }
   })
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+
+    dispatch(detailInfo(route.params.symbol)).then(() => setRefreshing(false));
+  }, [refreshing]);
+  
   return (
-    <ScrollView>
+    <ScrollView
+    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+    >
     {companyInfo && chartData && companyNews && !loading ?
     <View>
       <InfoView>
@@ -100,7 +117,7 @@ export default function DetailScreen({route}) {
         />
       </InfoView>
     </View>
-    : <ActivityIndicator size="large" color="#0000ff" />}
+    : !refreshing && <ActivityIndicator size="large" color="#0000ff" />}
     </ScrollView>
   );
 }
