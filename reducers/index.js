@@ -10,7 +10,7 @@ const initialState = {
   companyNews: null,
   mainData: null,
   wishlist: [],
-  wishlistInfo: []
+  wishlistInfo: [],
 }
 
 const reducer = produce((state, action) => {

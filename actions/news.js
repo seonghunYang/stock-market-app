@@ -18,31 +18,6 @@ export function CreateGeneralNews(category ="general") {
 }
 
 
-// export function SymbolSearchNews(symbol) {
-//   return async (dispatch) => {
-//     try{
-//       let toDay = new Date(); 
-//       let fromDay = new Date(toDay.getTime() - 60 * 60 * 24 * 14 * 1000)
-//       toDay = getFormatDate(toDay);
-//       fromDay = getFormatDate(fromDay);
-//       const {data} = await axios(BASE_URL+"/v1/company-news",{
-//         params: {
-//           symbol: symbol,
-//           from: fromDay,
-//           to: toDay,
-//           token: API_KEY
-//         }
-//       })
-//       if(data.length !== 0) {
-//         data[0]["symbol"] = symbol;
-//       }
-//       return data;
-//     }catch(error) {
-//       console.error(error);
-//     }
-//   }
-// }
-
 function getFormatDate(date){
   var year = date.getFullYear();              //yyyy
   var month = (1 + date.getMonth());          //M
