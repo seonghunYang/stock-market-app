@@ -74,8 +74,7 @@ export default function DetailScreen({route}) {
   })
   return (
     <ScrollView>
-    {loading && <ActivityIndicator size="large" color="#0000ff" />}
-    {companyInfo && chartData && companyNews &&
+    {companyInfo && chartData && companyNews && !loading ?
     <View>
       <InfoView>
         <RowView>
@@ -100,6 +99,8 @@ export default function DetailScreen({route}) {
         />
       </InfoView>
     </View>
+    : <ActivityIndicator size="large" color="#0000ff" />
+
     }
     </ScrollView>
 

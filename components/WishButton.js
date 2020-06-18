@@ -14,7 +14,7 @@ export default function WishStar({ symbol } ) {
   const checkWishlist= () => {
     let checkWish = false;
     wishlist.forEach((item) => {
-      if(item === symbol) {
+      if(item.symbol === symbol) {
         checkWish = true;
       }
     })
@@ -46,6 +46,7 @@ export default function WishStar({ symbol } ) {
             setIsWishlist(true);
             dispatch(addWishlist(symbol))  
           }}
+
           />}
     </View>
   )

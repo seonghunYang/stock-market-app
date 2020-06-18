@@ -34,6 +34,7 @@ const MarginFontAwesome = styled(FontAwesome)`
   margin-right: 10px;
 `
 
+
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

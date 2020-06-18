@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import { Text, View, Keyboard} from 'react-native';
 import styled from 'styled-components/native'
 import { useDispatch, useSelector } from 'react-redux'
+import { FontAwesome } from '@expo/vector-icons';
 
 import {createCompanyList} from '../actions/stock';
 const FlatList = styled.FlatList`
@@ -41,6 +42,14 @@ const ItemTitle = styled.View`
   border-bottom-width: 1px;
   backgroundColor: rgb(242, 242, 242)
 `;
+
+const EmptyView = styled.View`
+  width: 100%;
+  height: 500
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+`
 function Item({ item, navigation } ) {
   return (
     <TouchableHighlight
@@ -97,7 +106,12 @@ export default function SearchScreen({ navigation, route }) {
         renderItem={({ item }) => <Item item={item} navigation={navigation} />}
         keyExtractor={item => item.symbol}
         ListHeaderComponent={<ItemTitle><TextMain>Symbols</TextMain></ItemTitle>}
-        ListEmptyComponent={loading ? <ActivityIndicator size="large" color="#0000ff" />: <Text></Text>}
+        ListEmptyComponent={loading ? <ActivityIndicator size="large" color="#0000ff" />: 
+        <EmptyView>
+          <FontAwesome name="search" backgroundColor="white" color="gray" size={60}></FontAwesome>
+          <TextMain>SYMBOL을 검색하세요.</TextMain>
+        </EmptyView>
+        }
       />
     </View>
   );

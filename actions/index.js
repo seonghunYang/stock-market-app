@@ -97,9 +97,21 @@ export function mainDataLoader() {
 
 
 export function addWishlist (symbol) {
-  return ({
-    type: "ADD_WISHLIST", symbol: symbol
-  });
+  return async (dispatch) => {
+    let d = new Date();
+    let toDay = parseInt(d.getTime() / 1000); 
+    let fromDay = parseInt(d.getTime() / 1000) - 60 * 60 * 24; 
+    const {data} = await axios(BASE_URL+"/v1/stock/candle",{
+      params:{
+        symbol:symbol,
+        resolution:"60",
+        from: fromDay,
+        to: toDay,
+        token: API_KEY
+    }})
+    data["symbol"] = symbol;
+    dispatch({type: "ADD_WISHLIST", payload: data});
+  }
 }
 
 export function deleteWishlist (symbol) {
@@ -107,3 +119,4 @@ export function deleteWishlist (symbol) {
     type: "DELETE_WISHLIST", symbol: symbol
   })
 }
+
