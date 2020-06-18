@@ -6,7 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import {addWishlist, deleteWishlist} from '../actions/index';
 
-export default function WishStar({ symbol } ) {
+export default function Wishlist({ symbol } ) {
   const wishlist = useSelector(state => state.wishlist);
 
   const dispatch = useDispatch();
