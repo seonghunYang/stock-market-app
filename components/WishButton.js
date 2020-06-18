@@ -34,7 +34,6 @@ export default function WishStar({ symbol } ) {
         backgroundColor="#fff"
         onPress={() =>{
           setIsWishlist(false);
-          setVisible(true);
           dispatch(deleteWishlist(symbol))
         }}
         /> 
@@ -45,7 +44,6 @@ export default function WishStar({ symbol } ) {
           backgroundColor="#fff"
           onPress={() => {
             setIsWishlist(true);
-            setVisible(true);
             dispatch(addWishlist(symbol))  
           }}
           />}

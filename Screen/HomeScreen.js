@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import {CreateGeneralNews} from '../actions/news';
 import {mainDataLoader} from '../actions/index';
 import MainCard from '../components/MainCard';
+import WishList from '../components/WishList';
 
 const FlatList = styled.FlatList`
   width :100% ;
@@ -15,10 +16,24 @@ const FlatList = styled.FlatList`
 
 const ActivityIndicator = styled.ActivityIndicator`
 `;
-const ScrollView = styled.ScrollView``
+const ScrollView = styled.ScrollView`
+`
 
 const Text = styled.Text``
-
+const FlexView = styled.View`
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  `;
+const InfoView = styled.View`
+  width: 95%;
+  backgroundColor: #fff;
+  margin-bottom: 5px;
+  border-color: #eee;
+  border-width: 1px;
+  border-radius: 10px;
+  margin-top: 20px;
+`
 class HomeScreen extends React.Component {
   constructor(props){
     super(props);
@@ -45,8 +60,15 @@ class HomeScreen extends React.Component {
       return null;
     }
     return (
-      <ScrollView horizontal={true}>
-        {this.props.mainData.map((data) => <MainCard data={data} />)}
+      <ScrollView>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {this.props.mainData.map((data) => <MainCard data={data} />)}
+        </ScrollView>
+        <FlexView>
+          <InfoView>
+            <WishList navigation={this.props.navigation} />
+          </InfoView>
+        </FlexView>
       </ScrollView>
     );
   }

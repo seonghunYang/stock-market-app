@@ -95,6 +95,7 @@ export function mainDataLoader() {
   }
 }
 
+
 export function addWishlist (symbol) {
   return ({
     type: "ADD_WISHLIST", symbol: symbol
